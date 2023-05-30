@@ -11,14 +11,7 @@ function Home() {
   const [searchedProduct, setSearchedProduct] = useState(null);
 
   const [updateProductData, setUpdateProductData] = useState({});
-  const [newProductData, setNewProductData] = useState({
-    title: '',
-    image: '',
-    price: '',
-    description: '',
-    category: '',
-  });
-
+  
   useEffect(() => {
     loadProducts();
   }, []);
@@ -40,14 +33,14 @@ function Home() {
   };
 
   const handleCreateProduct = async () => {
-    await createProduct(newProductData);
-    setNewProductData({
-      title: '',
-      image: '',
-      price: '',
-      description: '',
-      category: '',
-    });
+    const product = {
+      title: 'New Product',
+      image: 'https://example.com/product-image.jpg',
+      price: 10.99,
+      description: 'New product description',
+      category: 'New Category',
+    };
+    await createProduct(product);
     loadProducts();
   };
 
@@ -82,22 +75,15 @@ function Home() {
     }));
   };
 
-  const handleNewProductChange = (e) => {
-    const { name, value } = e.target;
-    setNewProductData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
-
   return (
     <div id="home">
       <div className="button-container">
         <button onClick={() => {
-          setSearchedProduct(null);
+          setSearchedProduct(null)
           setSearchProductId('');
-          handleLoadProducts();
-        }}>Get All Products</button>
+          handleLoadProducts()
+          
+          }}>Get All Products</button>
         <div className="search-container">
           <input
             type="text"
@@ -148,89 +134,50 @@ function Home() {
           </div>
         </div>
       )}
-      {!searchedProduct && (
-        <div>
-          <h2>Create New Product</h2>
-          <form onSubmit={handleCreateProduct}>
-            <input
-              type="text"
-              name="title"
-              placeholder="Title"
-              value={newProductData.title}
-              onChange={handleNewProductChange}
-            />
-            <input
-              type="text"
-              name="image"
-              placeholder="Image URL"
-              value={newProductData.image}
-              onChange={handleNewProductChange}
-            />
-            <input
-              type="text"
-              name="price"
-              placeholder="Price"
-              value={newProductData.price}
-              onChange={handleNewProductChange}
-            />
-            <input
-              type="text"
-              name="description"
-              placeholder="Description"
-              value={newProductData.description}
-              onChange={handleNewProductChange}
-            />
-            <input
-              type="text"
-              name="category"
-              placeholder="Category"
-              value={newProductData.category}
-              onChange={handleNewProductChange}
-            />
-            <button type="submit">Create</button>
-          </form>
-        </div>
-      )}
-      {products.map((product) => (
-        <div className="product" key={product.id}>
-          <div className="product-image">
-            <img src={product.image} alt="product" />
+      {!searchedProduct &&
+        products.map((product) => (
+          <div className="product" key={product.id}>
+            <div className="product-image">
+              <img src={product.image} alt="product" />
+            </div>
+            <div className="product-name">
+              <a href="product.html">{product.title}</a>
+            </div>
+            <div className="product-brand">{product.brand}</div>
+            <div className="product-price">${product.price}</div>
+            <div className="product-rating">
+              {product.rating} Stars ({product.numReviews} Reviews)
+            </div>
+            <div className="product-actions">
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleUpdateProduct(product, product.id);
+                }}
+              >
+                <input
+                  type="text"
+                  name="title"
+                  placeholder="Title"
+                  value={updateProductData[product.id]?.title || ''}
+                  onChange={(e) => handleInputChange(e, product.id)}
+                />
+                <input
+                  type="text"
+                  name="price"
+                  placeholder="Price"
+                  value={updateProductData[product.id]?.price || ''}
+                  onChange={(e) => handleInputChange(e, product.id)}
+                />
+                <button type="submit">Update</button>
+              </form>
+              <button onClick={() => handleDeleteProduct(product.id)}>Delete</button>
+            </div>
           </div>
-          <div className="product-name">
-            <a href="product.html">{product.title}</a>
-          </div>
-          <div className="product-brand">{product.brand}</div>
-          <div className="product-price">${product.price}</div>
-          <div className="product-rating">
-            {product.rating} Stars ({product.numReviews} Reviews)
-          </div>
-          <div className="product-actions">
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                handleUpdateProduct(product, product.id);
-              }}
-            >
-              <input
-                type="text"
-                name="title"
-                placeholder="Title"
-                value={updateProductData[product.id]?.title || ''}
-                onChange={(e) => handleInputChange(e, product.id)}
-              />
-              <input
-                type="text"
-                name="price"
-                placeholder="Price"
-                value={updateProductData[product.id]?.price || ''}
-                onChange={(e) => handleInputChange(e, product.id)}
-              />
-              <button type="submit">Update</button>
-            </form>
-            <button onClick={() => handleDeleteProduct(product.id)}>Delete</button>
-          </div>
-        </div>
-      ))}
+        ))}
+      <div className="button-container">
+        <button onClick={handleCreateProduct}>Create New Product</button>
+      </div>
     </div>
   );
 }
