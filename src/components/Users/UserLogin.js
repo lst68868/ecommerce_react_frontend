@@ -1,5 +1,5 @@
-import React, { props, useEffect, useState } from "react";
-import { login, newUser, deleteUser } from "../../services/Controller";
+import React, { useState } from "react";
+import { login } from "../../services/Controller";
 
 function UserLogin(props) {
   //   const [loggedInUser, setLoggedInUser] = useState({});
