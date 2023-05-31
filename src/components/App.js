@@ -6,7 +6,9 @@ import UserLogin from "./Users/UserLogin";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
-
+  //TODO: FIX logged in User not perpetuating after refreshing browser
+  //TODO: UseContext? Wrap entire app with useContext to make authentication/user data global.
+  //TODO: JWT?
   // Check if loggedInUser is an empty object
   const isUserLoggedIn = Object.keys(loggedInUser).length !== 0;
 
