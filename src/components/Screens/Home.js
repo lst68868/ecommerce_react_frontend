@@ -10,7 +10,7 @@ import {
 } from "../../services/Controller";
 
 axios.defaults.baseURL = "https://ecommerce-react-api.herokuapp.com/";
-//TODO fix create product, debug using chrome debugger step through to see whats happening
+
 function Home() {
   const [products, setProducts] = useState([]);
   const [searchProductId, setSearchProductId] = useState("");

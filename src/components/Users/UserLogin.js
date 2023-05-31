@@ -1,38 +1,31 @@
 import React, { useState } from "react";
-import { login } from "../../services/Controller";
+import axios from "axios";
 
 function UserLogin(props) {
-  //   const [loggedInUser, setLoggedInUser] = useState({});
   const [loginMessage, setLoginMessage] = useState({});
-  //make a variable that stores a message
-  // this will get set in the controller on success
-  // on FAILURE (catch block) this message will be failed
 
   const handleLogin = async (e) => {
+    e.preventDefault();
     const user = {
       email: e.target[0].value,
       password: e.target[1].value,
     };
-    await login(user)
-      .then((response) => {
-        props.setLoggedInUser(response.data.User);
-        setLoginMessage({ message: "Logged In" });
-      })
-      .catch((error) => {
-        return setLoginMessage({ message: "User no Login :( ", error });
-      });
+    try {
+      const response = await axios.post(
+        "https://ecommerce-react-api.herokuapp.com/login",
+        user
+      );
+      props.setLoggedInUser(response.data.User);
+      setLoginMessage({ message: "Logged In" });
+      localStorage.setItem("user", JSON.stringify(response.data.User));
+    } catch (error) {
+      setLoginMessage({ message: "User no Login :( ", error });
+    }
   };
-
-  console.log(props.loggedInUser);
 
   return (
     <div id="login-form">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleLogin(e);
-        }}
-      >
+      <form onSubmit={handleLogin}>
         <input type="text" placeholder="Email" />
         <input type="password" placeholder="Password" />
         <button type="submit">Log In</button>

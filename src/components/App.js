@@ -5,12 +5,17 @@ import Home from "./Screens/Home";
 import UserLogin from "./Users/UserLogin";
 
 function App() {
-  const [loggedInUser, setLoggedInUser] = useState({});
-  //TODO: FIX logged in User not perpetuating after refreshing browser
-  //TODO: UseContext? Wrap entire app with useContext to make authentication/user data global.
-  //TODO: JWT?
-  // Check if loggedInUser is an empty object
+  const [loggedInUser, setLoggedInUser] = useState(() => {
+    const persistedUser = localStorage.getItem("user");
+    return persistedUser ? JSON.parse(persistedUser) : {};
+  });
+
   const isUserLoggedIn = Object.keys(loggedInUser).length !== 0;
+
+  const handleLogout = () => {
+    setLoggedInUser({});
+    localStorage.removeItem("user");
+  };
 
   return (
     <Router>
@@ -20,6 +25,9 @@ function App() {
         </div>
         <div id="home">
           {isUserLoggedIn ? <h1>Welcome {loggedInUser.firstName}</h1> : null}
+          {isUserLoggedIn ? (
+            <button onClick={handleLogout}>Logout</button>
+          ) : null}
           <Routes>
             <Route
               path="/"
