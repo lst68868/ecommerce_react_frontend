@@ -1,38 +1,18 @@
-import React, { useState } from "react";
-import { login } from "../../services/Controller";
+import React, { useContext } from "react";
+import { AuthContext } from "../../hooks/AuthContext";
+function UserLogin() {
+  const { handleLogin, loginMessage } = useContext(AuthContext);
 
-function UserLogin(props) {
-  //   const [loggedInUser, setLoggedInUser] = useState({});
-  const [loginMessage, setLoginMessage] = useState({});
-  //make a variable that stores a message
-  // this will get set in the controller on success
-  // on FAILURE (catch block) this message will be failed
-
-  const handleLogin = async (e) => {
-    const user = {
-      email: e.target[0].value,
-      password: e.target[1].value,
-    };
-    await login(user)
-      .then((response) => {
-        props.setLoggedInUser(response.data.User);
-        setLoginMessage({ message: "Logged In" });
-      })
-      .catch((error) => {
-        return setLoginMessage({ message: "User no Login :( ", error });
-      });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const email = e.target[0].value;
+    const password = e.target[1].value;
+    handleLogin(email, password);
   };
-
-  console.log(props.loggedInUser);
 
   return (
     <div id="login-form">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleLogin(e);
-        }}
-      >
+      <form onSubmit={handleSubmit}>
         <input type="text" placeholder="Email" />
         <input type="password" placeholder="Password" />
         <button type="submit">Log In</button>

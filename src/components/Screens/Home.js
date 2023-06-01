@@ -10,8 +10,8 @@ import {
 } from "../../services/Controller";
 
 axios.defaults.baseURL = "https://ecommerce-react-api.herokuapp.com/";
-//TODO fix create product, debug using chrome debugger step through to see whats happening
-function Home() {
+
+function Home({ loggedInUser }) {
   const [products, setProducts] = useState([]);
   const [searchProductId, setSearchProductId] = useState("");
   const [searchedProduct, setSearchedProduct] = useState(null);
@@ -19,7 +19,7 @@ function Home() {
 
   useEffect(() => {
     loadProducts();
-  }, []);
+  }, [loggedInUser]);
 
   const loadProducts = async () => {
     const data = await getAllProducts();
@@ -38,6 +38,7 @@ function Home() {
   };
 
   const handleCreateProduct = async (e) => {
+    e.preventDefault();
     const product = {
       title: e.target[0].value,
       image: e.target[1].value,
@@ -58,12 +59,6 @@ function Home() {
     setSearchedProduct(null); // Clear searchedProduct
     loadProducts();
   };
-
-  // const createProduct = async (product) => {
-  //   await createProduct(product);
-  //   setSearchedProduct(null); // Clear searchedProduct
-  //   loadProducts();
-  // };
 
   const handleDeleteProduct = async (id) => {
     await deleteProduct(id);
@@ -108,22 +103,12 @@ function Home() {
           <button onClick={handleGetOneProduct}>Search Product</button>
         </div>
         <div id="create-product-container">
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              handleCreateProduct(e);
-            }}
-          >
+          <form onSubmit={handleCreateProduct}>
             <input type="text" name="title" placeholder="Title" />
-
             <input type="text" name="image" placeholder="Image URL" />
-
             <input type="number" name="price" placeholder="Price" />
-
             <input type="text" name="description" placeholder="Description" />
-
             <input type="text" name="category" placeholder="Category" />
-
             <button type="submit">Add New Product</button>
           </form>
         </div>
