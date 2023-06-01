@@ -30,6 +30,7 @@ export const getOneProductOrDefault = async (id) => {
     const response = await axios.get(`/products/${id}`);
     data.product = response.data;
     console.log(data);
+    window.alert(data);
   } catch (error) {
     console.log(error);
   }

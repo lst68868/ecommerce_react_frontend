@@ -1,6 +1,9 @@
 import React, { createContext, useState } from "react";
 import axios from "axios";
 
+// Set the base URL for axios requests
+axios.defaults.baseURL = "https://ecommerce-react-api.herokuapp.com/";
+
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {

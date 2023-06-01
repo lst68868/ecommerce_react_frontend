@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../hooks/AuthContext";
 
 function NavBar() {
+  const { loggedInUser, setLoggedInUser } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    setLoggedInUser(null);
+    localStorage.removeItem("user");
+  };
+
   return (
     <nav>
       <ul>
@@ -14,9 +22,15 @@ function NavBar() {
         <li>
           <Link to="/users">Users</Link>
         </li>
-        <li>
-          <Link to="/login">Login</Link>
-        </li>
+        {loggedInUser ? (
+          <li>
+            <button onClick={handleLogout}>Logout</button>
+          </li>
+        ) : (
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+        )}
       </ul>
     </nav>
   );

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../hooks/AuthContext";
+
 function UserLogin() {
   const { handleLogin, loginMessage } = useContext(AuthContext);
 
@@ -9,6 +10,18 @@ function UserLogin() {
     const password = e.target[1].value;
     handleLogin(email, password);
   };
+
+  let email = localStorage.getItem("email");
+
+  console.log(email);
+
+  if (localStorage.getItem("email") !== null) {
+    return (
+      <div id="login-form">
+        <p>: D </p>
+      </div>
+    );
+  }
 
   return (
     <div id="login-form">
