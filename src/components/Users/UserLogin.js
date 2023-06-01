@@ -1,31 +1,18 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useContext } from "react";
+import { AuthContext } from "../../hooks/AuthContext";
+function UserLogin() {
+  const { handleLogin, loginMessage } = useContext(AuthContext);
 
-function UserLogin(props) {
-  const [loginMessage, setLoginMessage] = useState({});
-
-  const handleLogin = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const user = {
-      email: e.target[0].value,
-      password: e.target[1].value,
-    };
-    try {
-      const response = await axios.post(
-        "https://ecommerce-react-api.herokuapp.com/login",
-        user
-      );
-      props.setLoggedInUser(response.data.User);
-      setLoginMessage({ message: "Logged In" });
-      localStorage.setItem("user", JSON.stringify(response.data.User));
-    } catch (error) {
-      setLoginMessage({ message: "User no Login :( ", error });
-    }
+    const email = e.target[0].value;
+    const password = e.target[1].value;
+    handleLogin(email, password);
   };
 
   return (
     <div id="login-form">
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleSubmit}>
         <input type="text" placeholder="Email" />
         <input type="password" placeholder="Password" />
         <button type="submit">Log In</button>
