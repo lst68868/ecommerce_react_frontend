@@ -1,3 +1,4 @@
+// App.js
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import NavBar from "./Nav/NavBar";
@@ -34,7 +35,11 @@ function App() {
               <Route
                 path="/"
                 element={
-                  isUserLoggedIn ? <Home /> : <h1>No User Logged In :c</h1>
+                  isUserLoggedIn ? (
+                    <Home loggedInUser={loggedInUser} />
+                  ) : (
+                    <h1>No User Logged In :c</h1>
+                  )
                 }
               />
 
