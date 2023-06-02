@@ -1,12 +1,11 @@
-// App.js
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import NavBar from "./Nav/NavBar";
 import Home from "./Screens/Home";
 import UserLogin from "./Users/UserLogin";
+import CreateUser from "./Users/CreateUser";
 import AuthProvider from "../hooks/AuthContext";
 import "./App.css";
-
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState(() => {
@@ -57,6 +56,7 @@ function App() {
                   />
                 }
               />
+              <Route path="/create-user" element={<CreateUser />} />
             </Routes>
           </div>
         </div>

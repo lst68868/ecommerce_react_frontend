@@ -18,7 +18,7 @@ const AuthProvider = ({ children }) => {
       setLoginMessage({ message: "Logged In" });
       localStorage.setItem("user", JSON.stringify(response.data.User));
     } catch (error) {
-      setLoginMessage({ message: "User no Login :( ", error });
+      setLoginMessage({ message: "User not Login :( ", error });
     }
   };
 
