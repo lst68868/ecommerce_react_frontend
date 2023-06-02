@@ -102,16 +102,6 @@ function Home({ loggedInUser }) {
           />
           <button onClick={handleGetOneProduct}>Search Product</button>
         </div>
-        <div id="create-product-container">
-          <form onSubmit={handleCreateProduct}>
-            <input type="text" name="title" placeholder="Title" />
-            <input type="text" name="image" placeholder="Image URL" />
-            <input type="number" name="price" placeholder="Price" />
-            <input type="text" name="description" placeholder="Description" />
-            <input type="text" name="category" placeholder="Category" />
-            <button type="submit">Add New Product</button>
-          </form>
-        </div>
       </div>
       {searchedProduct && (
         <div className="product" key={searchedProduct._id}>
@@ -199,9 +189,16 @@ function Home({ loggedInUser }) {
             </div>
           </div>
         ))}
-      {/* <div className="button-container">
-        <button onClick={handleCreateProduct}>Create New Product</button>
-      </div> */}
+      <div id="create-product-container">
+        <form onSubmit={handleCreateProduct}>
+          <input type="text" name="title" placeholder="Title" />
+          <input type="text" name="image" placeholder="Image URL" />
+          <input type="number" name="price" placeholder="Price" />
+          <input type="text" name="description" placeholder="Description" />
+          <input type="text" name="category" placeholder="Category" />
+          <button type="submit">Add New Product</button>
+        </form>
+      </div>
     </div>
   );
 }

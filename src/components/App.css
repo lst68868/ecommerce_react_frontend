@@ -1,0 +1,55 @@
+:root {
+    --primary-color: #414141;
+    --secondary-color: #6c6c6c;
+    --background-color: #ffffff;
+    --text-color: #000000;
+    --font-family: Helvetica, Arial, sans-serif;
+    --button-color: #007BFF;
+    --button-hover-color: #0056b3;
+}
+
+body {
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    padding: 10px;
+    margin: 3px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--button-color);
+    color: var(--background-color);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border-radius: 5px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,.2);
+}
+
+button:hover {
+    background-color: var(--button-hover-color);
+    transform: scale(1.05);
+}
+
+.logout-button {
+    background-color: #008CBA; /* Change this to whatever color you like */
+    color: white;
+    padding: 5px 10px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .logout-button:hover {
+    background-color: #007B9A; /* A slightly darker shade for hover effect */
+  }
+
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  

@@ -1,0 +1,44 @@
+#NavBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #007BFF; /* Modern blue */
+    color: var(--background-color);
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+
+#NavBar ul {
+    display: flex;
+    justify-content: space-between; /* or space-around */
+    list-style: none; /* remove the default bullet points */
+    padding: 0; /* remove padding */
+}
+
+
+
+#NavBar a {
+    color: var(--background-color);
+    display: flex;
+    text-decoration: none;
+    margin: 0 15px;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+    flex-direction: column;
+}
+
+#NavBar a:hover {
+    color: var(--button-hover-color);
+}
+
+/* Styling for active link */
+#NavBar a.active {
+    border-bottom: 2px solid var(--button-hover-color);
+}
+
+
+  
