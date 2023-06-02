@@ -199,9 +199,9 @@ function Home({ loggedInUser }) {
             </div>
           </div>
         ))}
-      <div className="button-container">
+      {/* <div className="button-container">
         <button onClick={handleCreateProduct}>Create New Product</button>
-      </div>
+      </div> */}
     </div>
   );
 }
