@@ -9,19 +9,16 @@
     position: sticky;
     top: 0;
     z-index: 100;
-}
-
-
-#NavBar ul {
+  }
+  
+  #NavBar ul {
     display: flex;
     justify-content: space-between; /* or space-around */
     list-style: none; /* remove the default bullet points */
     padding: 0; /* remove padding */
-}
-
-
-
-#NavBar a {
+  }
+  
+  #NavBar a {
     color: var(--background-color);
     display: flex;
     text-decoration: none;
@@ -29,16 +26,32 @@
     padding: 5px 10px;
     transition: color 0.3s ease;
     flex-direction: column;
-}
-
-#NavBar a:hover {
+  }
+  
+  #NavBar a:hover {
     color: var(--button-hover-color);
-}
-
-/* Styling for active link */
-#NavBar a.active {
+  }
+  
+  /* Styling for active link */
+  #NavBar a.active {
     border-bottom: 2px solid var(--button-hover-color);
-}
-
-
+  }
+  
+  @media screen and (max-width: 768px) {
+    #NavBar {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 20px;
+    }
+  
+    #NavBar ul {
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 20px;
+    }
+  
+    #NavBar a {
+      margin: 10px 0;
+    }
+  }
   
