@@ -40,11 +40,12 @@ function CreateUser() {
         }
       );
 
+      setSuccessMessage(`New user ${response.firstName} created.`);
+
       setFirstName("");
       setLastName("");
       setEmail("");
       setPassword("");
-      setSuccessMessage(`New user ${response.firstName} created.`);
       setErrorMessage("");
       fetchUsers();
     } catch (error) {
