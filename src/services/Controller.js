@@ -10,9 +10,12 @@ axios.defaults.baseURL = "https://ecommerce-react-api.herokuapp.com/";
 export const getAllProducts = async () => {
   const data = {};
   try {
-    const response = await axios.get("/products");
+    const response = await axios.get("/products", {
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_TOKEN}`,
+      },
+    });
     data.products = response.data;
-    console.log(data);
   } catch (error) {
     console.log(error);
   }

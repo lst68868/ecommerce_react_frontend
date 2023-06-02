@@ -102,17 +102,8 @@ function Home({ loggedInUser }) {
           />
           <button onClick={handleGetOneProduct}>Search Product</button>
         </div>
-        <div id="create-product-container">
-          <form onSubmit={handleCreateProduct}>
-            <input type="text" name="title" placeholder="Title" />
-            <input type="text" name="image" placeholder="Image URL" />
-            <input type="number" name="price" placeholder="Price" />
-            <input type="text" name="description" placeholder="Description" />
-            <input type="text" name="category" placeholder="Category" />
-            <button type="submit">Add New Product</button>
-          </form>
-        </div>
       </div>
+
       {searchedProduct && (
         <div className="product" key={searchedProduct._id}>
           <div className="product-image">
@@ -156,51 +147,63 @@ function Home({ loggedInUser }) {
           </div>
         </div>
       )}
-      {!searchedProduct &&
-        products.map((product) => (
-          <div className="product" key={product._id}>
-            <div className="product-image">
-              <img src={product.image} alt="product" />
+
+      {!searchedProduct && (
+        <div className="products-container">
+          {products.map((product) => (
+            <div className="product" key={product._id}>
+              <div className="product-image">
+                <img src={product.image} alt="product" />
+              </div>
+              <div className="product-name">
+                <a href="product.html">{product.title}</a>
+              </div>
+              <div className="product-brand">{product.brand}</div>
+              <div className="product-price">${product.price}</div>
+              <div className="product-rating">
+                {product.rating} Stars ({product.numReviews} Reviews)
+              </div>
+              <div className="product-actions">
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    handleUpdateProduct(product, product._id);
+                  }}
+                >
+                  <input
+                    type="text"
+                    name="title"
+                    placeholder="Title"
+                    value={updateProductData[product._id]?.title || ""}
+                    onChange={(e) => handleInputChange(e, product._id)}
+                  />
+                  <input
+                    type="text"
+                    name="price"
+                    placeholder="Price"
+                    value={updateProductData[product._id]?.price || ""}
+                    onChange={(e) => handleInputChange(e, product._id)}
+                  />
+                  <button type="submit">Update</button>
+                </form>
+                <button onClick={() => handleDeleteProduct(product._id)}>
+                  Delete
+                </button>
+              </div>
             </div>
-            <div className="product-name">
-              <a href="product.html">{product.title}</a>
-            </div>
-            <div className="product-brand">{product.brand}</div>
-            <div className="product-price">${product.price}</div>
-            <div className="product-rating">
-              {product.rating} Stars ({product.numReviews} Reviews)
-            </div>
-            <div className="product-actions">
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  handleUpdateProduct(product, product._id);
-                }}
-              >
-                <input
-                  type="text"
-                  name="title"
-                  placeholder="Title"
-                  value={updateProductData[product._id]?.title || ""}
-                  onChange={(e) => handleInputChange(e, product._id)}
-                />
-                <input
-                  type="text"
-                  name="price"
-                  placeholder="Price"
-                  value={updateProductData[product._id]?.price || ""}
-                  onChange={(e) => handleInputChange(e, product._id)}
-                />
-                <button type="submit">Update</button>
-              </form>
-              <button onClick={() => handleDeleteProduct(product._id)}>
-                Delete
-              </button>
-            </div>
-          </div>
-        ))}
-      <div className="button-container">
-        <button onClick={handleCreateProduct}>Create New Product</button>
+          ))}
+        </div>
+      )}
+
+      <div id="create-product-container">
+        <form onSubmit={handleCreateProduct}>
+          <input type="text" name="title" placeholder="Title" />
+          <input type="text" name="image" placeholder="Image URL" />
+          <input type="number" name="price" placeholder="Price" />
+          <input type="text" name="description" placeholder="Description" />
+          <input type="text" name="category" placeholder="Category" />
+          <button type="submit">Add New Product</button>
+        </form>
       </div>
     </div>
   );

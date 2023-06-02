@@ -5,6 +5,8 @@ import NavBar from "./Nav/NavBar";
 import Home from "./Screens/Home";
 import UserLogin from "./Users/UserLogin";
 import AuthProvider from "../hooks/AuthContext";
+import "./App.css";
+
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState(() => {
@@ -24,13 +26,17 @@ function App() {
       <Router>
         <div>
           <div id="NavBar">
-            <NavBar />
+            <div className="navbar-container">
+              <NavBar />
+              {isUserLoggedIn ? (
+                <button className="logout-button" onClick={handleLogout}>
+                  Logout
+                </button>
+              ) : null}
+            </div>
           </div>
           <div id="home">
             {isUserLoggedIn ? <h1>Welcome {loggedInUser.firstName}</h1> : null}
-            {isUserLoggedIn ? (
-              <button onClick={handleLogout}>Logout</button>
-            ) : null}
             <Routes>
               <Route
                 path="/"
@@ -42,7 +48,6 @@ function App() {
                   )
                 }
               />
-
               <Route
                 path="/login"
                 element={
