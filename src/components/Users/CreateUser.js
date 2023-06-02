@@ -31,7 +31,7 @@ function CreateUser() {
 
     try {
       const response = await axios.post(
-        "https://ecommerce-react-api.herokuapp.com/user",
+        "https://ecommerce-react-api.herokuapp.com/users",
         {
           firstName,
           lastName,
@@ -57,7 +57,7 @@ function CreateUser() {
   const handleDeleteUser = async (email) => {
     try {
       await axios.delete(
-        `https://ecommerce-react-api.herokuapp.com/user/${email}`
+        `https://ecommerce-react-api.herokuapp.com/users/${email}`
       );
       setSuccessMessage(`User with email ${email} deleted.`);
       setErrorMessage("");

@@ -120,7 +120,7 @@ export const newUser = async (user) => {
 
 export const deleteUser = async (email) => {
   try {
-    const response = await axios.delete(`/user/${email}`);
+    const response = await axios.delete(`/users/${email}`);
     console.log(response.status);
   } catch (error) {
     console.log(error);
