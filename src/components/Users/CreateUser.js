@@ -44,7 +44,7 @@ function CreateUser() {
       setLastName("");
       setEmail("");
       setPassword("");
-      setSuccessMessage(`New user ${response.data.firstName} created.`);
+      setSuccessMessage(`New user ${response.firstName} created.`);
       setErrorMessage("");
       fetchUsers();
     } catch (error) {
