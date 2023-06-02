@@ -20,12 +20,9 @@
   
   #NavBar a {
     color: var(--background-color);
-    display: flex;
     text-decoration: none;
-    margin: 0 15px;
-    padding: 5px 10px;
     transition: color 0.3s ease;
-    flex-direction: column;
+    font-weight: bold;
   }
   
   #NavBar a:hover {
@@ -37,21 +34,76 @@
     border-bottom: 2px solid var(--button-hover-color);
   }
   
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar-logo a {
+    font-size: 20px;
+    color: var(--background-color);
+    font-weight: bold;
+  }
+  
+  .navbar-menu {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-menu ul {
+    display: flex;
+  }
+  
+  .navbar-menu ul li {
+    margin: 0 10px;
+  }
+  
+  .navbar-toggle {
+    display: none;
+    cursor: pointer;
+  }
+  
+  .bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--background-color);
+    margin: 5px 0;
+    transition: transform 0.3s ease;
+  }
+  
+  .open .bar:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 5px);
+  }
+  
+  .open .bar:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .open .bar:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -5px);
+  }
+  
   @media screen and (max-width: 768px) {
-    #NavBar {
+    .navbar-container {
       flex-direction: column;
       align-items: flex-start;
       padding: 20px;
     }
   
-    #NavBar ul {
+    .navbar-menu {
+      display: none;
       flex-direction: column;
       align-items: flex-start;
-      margin-top: 20px;
+      margin-top: 10px;
     }
   
-    #NavBar a {
-      margin: 10px 0;
+    .navbar-menu.open {
+      display: flex;
+    }
+  
+    .navbar-toggle {
+      display: block;
     }
   }
   
