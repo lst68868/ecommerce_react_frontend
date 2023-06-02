@@ -31,7 +31,7 @@ function CreateUser() {
 
     try {
       const response = await axios.post(
-        "https://ecommerce-react-api.herokuapp.com/users",
+        "https://ecommerce-react-api.herokuapp.com/user",
         {
           firstName,
           lastName,
