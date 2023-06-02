@@ -40,13 +40,15 @@ function CreateUser() {
         }
       );
 
+      setSuccessMessage(
+        `New user ${response.user.firstName} ${response.user.lastName} created.`
+      );
       setFirstName("");
       setLastName("");
       setEmail("");
       setPassword("");
       setErrorMessage("");
       fetchUsers();
-      setSuccessMessage(`New user ${response} created.`);
     } catch (error) {
       console.error(error);
       setErrorMessage("Error creating user. Please try again.");
