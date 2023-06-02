@@ -7,6 +7,7 @@ import UserLogin from "./Users/UserLogin";
 import AuthProvider from "../hooks/AuthContext";
 import "./App.css";
 
+
 function App() {
   const [loggedInUser, setLoggedInUser] = useState(() => {
     const persistedUser = localStorage.getItem("user");
