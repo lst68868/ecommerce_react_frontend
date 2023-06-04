@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { AuthContext } from "../../../src/hooks/AuthContext";
 import axios from "axios";
 import "./Home.css";
 import {
@@ -11,7 +12,10 @@ import {
 
 axios.defaults.baseURL = "https://ecommerce-react-api.herokuapp.com/";
 
-function Home({ loggedInUser }) {
+function Home() {
+  const { loggedInUser } = useContext(AuthContext);
+  const isLoggedIn = !!loggedInUser;
+
   const [products, setProducts] = useState([]);
   const [searchProductId, setSearchProductId] = useState("");
   const [searchedProduct, setSearchedProduct] = useState(null);

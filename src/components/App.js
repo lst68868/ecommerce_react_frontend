@@ -40,11 +40,7 @@ function App() {
               <Route
                 path="/"
                 element={
-                  isUserLoggedIn ? (
-                    <Home loggedInUser={loggedInUser} />
-                  ) : (
-                    <h1>No User Logged In :c</h1>
-                  )
+                  isUserLoggedIn ? <Home /> : <h1>No User Logged In :c</h1>
                 }
               />
               <Route
