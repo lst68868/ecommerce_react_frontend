@@ -112,7 +112,8 @@ export const newUser = async (user) => {
   };
   try {
     const response = await axios.post("/user", User);
-    console.log(response.status);
+    console.log(response.data.user);
+    return response;
   } catch (error) {
     console.log(error);
   }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { newUser } from "../../services/Controller";
 
 function CreateUser() {
   const [firstName, setFirstName] = useState("");
@@ -30,17 +31,13 @@ function CreateUser() {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "https://ecommerce-react-api.herokuapp.com/user",
-        {
-          firstName,
-          lastName,
-          email,
-          password,
-        }
-      );
-
-      setSuccessMessage(`New user ${response.data} created.`);
+      const response = await newUser({
+        firstName,
+        lastName,
+        email,
+        password,
+      });
+      setSuccessMessage(`New user ${response.data.user.firstName} created.`);
       fetchUsers();
       setFirstName("");
       setLastName("");
