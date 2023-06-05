@@ -5,13 +5,13 @@ import "./UserLogin.css";
 function UserLogin() {
   const { handleLogin, loginMessage } = useContext(AuthContext);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const email = e.target[0].value;
     const password = e.target[1].value;
-    handleLogin(email, password);
+    await handleLogin(email, password);
   };
-
+  console.log(loginMessage);
   return (
     <div id="login-form">
       <form onSubmit={handleSubmit}>
@@ -19,7 +19,7 @@ function UserLogin() {
         <input type="password" placeholder="Password" />
         <button type="submit">Log In</button>
       </form>
-      <h1>{loginMessage.message}</h1>
+      {loginMessage !== undefined && <h1>{loginMessage.message}</h1>}
     </div>
   );
 }
