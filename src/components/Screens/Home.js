@@ -40,7 +40,6 @@ function Home() {
       setSearchedProduct(data.product);
     }
   };
-
   const handleCreateProduct = async (e) => {
     e.preventDefault();
     const product = {
@@ -84,7 +83,6 @@ function Home() {
       },
     }));
   };
-
   if (!isUserLoggedIn) {
     return (
       <div id="user-not-logged-in">

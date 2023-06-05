@@ -89,7 +89,6 @@ export const updateProduct = async (product, id) => {
     console.log(error);
   }
 };
-
 export const login = async (user) => {
   const User = {
     email: user.email,
