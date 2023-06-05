@@ -13,9 +13,19 @@
   
   #NavBar ul {
     display: flex;
-    justify-content: space-between; /* or space-around */
+    align-items: center; /* Center items vertically */
     list-style: none; /* remove the default bullet points */
     padding: 0; /* remove padding */
+    flex-grow: 1; /* Expand to take remaining space */
+  }
+  
+  #NavBar button {
+    display: flex;
+    justify-content: space-between;
+    list-style: none; /* remove the default bullet points */
+    margin-top: 0;
+    margin-left: auto; /* Move the button to the right */
+    height: 100%; /* Take up the entire vertical size */
   }
   
   #NavBar a {

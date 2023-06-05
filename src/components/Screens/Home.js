@@ -87,7 +87,7 @@ function Home() {
 
   if (!isUserLoggedIn) {
     return (
-      <div id="home">
+      <div id="user-not-logged-in">
         <h1>User Not Logged In</h1>
       </div>
     );
