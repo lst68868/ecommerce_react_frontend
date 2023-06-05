@@ -1,43 +1,24 @@
-import React, { props, useEffect, useState } from "react";
-import { login, newUser, deleteUser } from "../../services/Controller";
+import React, { useContext } from "react";
+import { AuthContext } from "../../hooks/AuthContext";
+import "./UserLogin.css";
 
-function UserLogin(props) {
-  //   const [loggedInUser, setLoggedInUser] = useState({});
-  const [loginMessage, setLoginMessage] = useState({});
-  //make a variable that stores a message
-  // this will get set in the controller on success
-  // on FAILURE (catch block) this message will be failed
+function UserLogin() {
+  const { handleLogin, loginMessage } = useContext(AuthContext);
 
-  const handleLogin = async (e) => {
-    const user = {
-      email: e.target[0].value,
-      password: e.target[1].value,
-    };
-    await login(user)
-      .then((response) => {
-        props.setLoggedInUser(response.data.User);
-        setLoginMessage({ message: "Logged In" });
-      })
-      .catch((error) => {
-        return setLoginMessage({ message: "User no Login :( ", error });
-      });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const email = e.target[0].value;
+    const password = e.target[1].value;
+    await handleLogin(email, password);
   };
-
-  console.log(props.loggedInUser);
-
   return (
     <div id="login-form">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleLogin(e);
-        }}
-      >
+      <form onSubmit={handleSubmit}>
         <input type="text" placeholder="Email" />
         <input type="password" placeholder="Password" />
         <button type="submit">Log In</button>
       </form>
-      <h1>{loginMessage.message}</h1>
+      {loginMessage !== undefined && <h1>{loginMessage.message}</h1>}
     </div>
   );
 }

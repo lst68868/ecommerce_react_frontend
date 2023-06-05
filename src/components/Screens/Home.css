@@ -1,72 +1,87 @@
 #home {
+    background-color: var(--background-color);
+  }
+  
+  .products-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     gap: 20px;
     margin-bottom: 20px;
-}
+  }
   
-.product {
+  .product {
     width: 200px;
-    background-color: #f1f1f1;
+    background-color: var(--background-color);
     padding: 10px;
     text-align: center;
-}
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+    color: var(--text-color);
+  }
   
-.product-image img {
+  .product:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);
+  }
+  
+  .product-image img {
     width: 100%;
     max-height: 200px;
     object-fit: contain;
-}
+    border-radius: 5px;
+  }
   
-.product-name a {
+  .product-name a {
     text-decoration: none;
-    color: #333;
+    color: var(--primary-color);
     font-weight: bold;
-}
+  }
   
-.product-brand {
+  .product-brand {
     font-size: 14px;
-    color: #777;
-}
+    color: var(--secondary-color);
+  }
   
-.product-price {
+  .product-price {
     font-size: 18px;
-    color: #333;
+    color: var(--primary-color);
     font-weight: bold;
     margin-top: 10px;
-}
+  }
   
-.product-rating {
+  .product-rating {
     font-size: 14px;
-    color: #777;
+    color: var(--secondary-color);
     margin-top: 5px;
-}
-
-.new-product {
+  }
+  
+  #create-product-container {
+    position: sticky;
+    bottom: 0;
+    padding: 20px;
     background-color: #f1f1f1;
-    padding: 10px;
+    z-index: 10;
+  }
+
+  #user-not-logged-in {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
-    width: 80%;
-    margin: auto;
-}
-
-.new-product h2 {
-    margin-bottom: 20px;
-}
-
-.new-product form input {
-    width: 80%;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-
-.new-product form button {
-    width: 50%;
-    padding: 10px;
-    margin-top: 10px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
+    padding: 20px;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  
+  @media screen and (max-width: 768px) {
+    .products-container {
+      justify-content: center;
+    }
+  }
+  

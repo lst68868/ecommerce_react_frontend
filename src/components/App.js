@@ -1,44 +1,39 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import NavBar from "./Nav/NavBar";
 import Home from "./Screens/Home";
 import UserLogin from "./Users/UserLogin";
+import CreateUser from "./Users/CreateUser";
+import AuthProvider from "../hooks/AuthContext";
+import "./App.css";
 
 function App() {
-  const [loggedInUser, setLoggedInUser] = useState({});
-
-  // Check if loggedInUser is an empty object
-  const isUserLoggedIn = Object.keys(loggedInUser).length !== 0;
+  // useEffect(() => {
+  //   const persistedUser = localStorage.getItem("user");
+  //   if (persistedUser) {
+  //     handleLogin(JSON.parse(persistedUser));
+  //   }
+  // }, []);
 
   return (
-    <Router>
-      <div>
-        <div id="NavBar">
-          <NavBar />
+    <AuthProvider>
+      <Router>
+        <div>
+          <div id="NavBar">
+            <div className="navbar-container">
+              <NavBar />
+            </div>
+          </div>
+          <div id="home">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<UserLogin />} />
+              <Route path="/create-user" element={<CreateUser />} />
+            </Routes>
+          </div>
         </div>
-        <div id="home">
-          {isUserLoggedIn ? <h1>Welcome {loggedInUser.firstName}</h1> : null}
-          <Routes>
-            <Route
-              path="/"
-              element={
-                isUserLoggedIn ? <Home /> : <h1>No User Logged In :c</h1>
-              }
-            />
-
-            <Route
-              path="/login"
-              element={
-                <UserLogin
-                  setLoggedInUser={setLoggedInUser}
-                  loggedInUser={loggedInUser}
-                />
-              }
-            />
-          </Routes>
-        </div>
-      </div>
-    </Router>
+      </Router>
+    </AuthProvider>
   );
 }
 

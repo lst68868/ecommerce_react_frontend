@@ -10,9 +10,12 @@ axios.defaults.baseURL = "https://ecommerce-react-api.herokuapp.com/";
 export const getAllProducts = async () => {
   const data = {};
   try {
-    const response = await axios.get("/products");
+    const response = await axios.get("/products", {
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_TOKEN}`,
+      },
+    });
     data.products = response.data;
-    console.log(data);
   } catch (error) {
     console.log(error);
   }
@@ -86,7 +89,6 @@ export const updateProduct = async (product, id) => {
     console.log(error);
   }
 };
-
 export const login = async (user) => {
   const User = {
     email: user.email,
@@ -109,7 +111,8 @@ export const newUser = async (user) => {
   };
   try {
     const response = await axios.post("/user", User);
-    console.log(response.status);
+    console.log(response.data.user);
+    return response;
   } catch (error) {
     console.log(error);
   }
@@ -117,7 +120,7 @@ export const newUser = async (user) => {
 
 export const deleteUser = async (email) => {
   try {
-    const response = await axios.delete(`/user/${email}`);
+    const response = await axios.delete(`/users/${email}`);
     console.log(response.status);
   } catch (error) {
     console.log(error);
