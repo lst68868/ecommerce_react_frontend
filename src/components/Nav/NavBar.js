@@ -6,9 +6,9 @@ import { AuthContext } from "../../hooks/AuthContext";
 function NavBar() {
   const { loggedInUser, isUserLoggedIn, handleLogout } =
     useContext(AuthContext);
-  console.log("IN NAV COMP");
-  console.log(loggedInUser);
-  console.log("is user logged in? ", isUserLoggedIn);
+  // console.log("IN NAV COMP");
+  // console.log(loggedInUser);
+  // console.log("is user logged in? ", isUserLoggedIn);
   return (
     <nav>
       <ul>

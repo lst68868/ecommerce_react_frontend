@@ -11,7 +11,6 @@ function UserLogin() {
     const password = e.target[1].value;
     await handleLogin(email, password);
   };
-  console.log(loginMessage);
   return (
     <div id="login-form">
       <form onSubmit={handleSubmit}>
