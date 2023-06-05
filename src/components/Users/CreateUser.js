@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { newUser } from "../../services/Controller";
+import "./CreateUser.css";
 
 function CreateUser() {
   const [firstName, setFirstName] = useState("");
@@ -67,7 +68,7 @@ function CreateUser() {
   };
 
   return (
-    <div>
+    <div className="create-user-container">
       <h1>Create User</h1>
       <form onSubmit={handleSubmit}>
         <input
