@@ -12,7 +12,7 @@ Greetings! We're excited to present our e-commerce admin portal project. This pr
 
 ## Overview
 
-Our application is neatly split into front and back ends, each with its own responsibilities. On the front end, we use React.js to handle the user interface and user interactions. This communicates with the back end through API calls, turning user inputs into actions. The back end, built with Express.js, handles processing requests, managing data in MongoDB, and sending responses back to the front end. This part might be less visible, but it's crucial to the overall functioning of our app.
+Our application is neatly split into front and back ends (see repo linked above for server/API code), each with its own responsibilities. On the front end, we use React.js to handle the user interface and user interactions. This communicates with the back end through API calls, turning user inputs into actions. The back end, built with Express.js, handles processing requests, managing data in MongoDB, and sending responses back to the front end. This part might be less visible, but it's crucial to the overall functioning of our app.
 
 ## Backend: Express.js and MongoDB
 
