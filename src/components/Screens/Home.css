@@ -60,7 +60,7 @@
     position: sticky;
     bottom: 0;
     padding: 20px;
-    background-color: var(--background-color);
+    background-color: #007BFF;
     z-index: 10;
   }
 
