@@ -1,0 +1,94 @@
+.create-user-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 20px;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  .create-user-container h1 {
+    color: #333;
+  }
+  
+  .create-user-container form {
+    margin-bottom: 20px;
+  }
+  
+  .create-user-container input {
+    margin-bottom: 10px;
+    padding: 5px;
+  }
+  
+  .create-user-container button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+
+  .create-user-container h1 {
+    color: #fff;
+  }
+  
+  .create-user-container button:hover {
+    background-color: #0056b3;
+  }
+  
+  .create-user-container ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .create-user-container li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .create-user-container li span {
+    flex: 1;
+  }
+  
+  .create-user-container li button {
+    margin-left: 10px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .create-user-container table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .create-user-container th,
+  .create-user-container td {
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .create-user-container th {
+    background-color: #f0f0f0;
+  }
+  
+  .create-user-container td:last-child {
+    text-align: center;
+  }
+  
+  .create-user-container .success-message {
+    color: green;
+  }
+  
+  .create-user-container .error-message {
+    color: red;
+  }
+  

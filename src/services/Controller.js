@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // Set the base URL for axios requests
-axios.defaults.baseURL = 'https://ecommerce-react-api.herokuapp.com/';
+axios.defaults.baseURL = "https://ecommerce-react-api.herokuapp.com/";
 
 /**
  * Get all products from the API
@@ -10,9 +10,12 @@ axios.defaults.baseURL = 'https://ecommerce-react-api.herokuapp.com/';
 export const getAllProducts = async () => {
   const data = {};
   try {
-    const response = await axios.get('/products');
+    const response = await axios.get("/products", {
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_SECRET_TOKEN}`,
+      },
+    });
     data.products = response.data;
-    console.log(data);
   } catch (error) {
     console.log(error);
   }
@@ -49,7 +52,7 @@ export const createProduct = async (product) => {
     category: product.category,
   };
   try {
-    const response = await axios.post('/products', Product);
+    const response = await axios.post("/products", Product);
     console.log(response.status);
   } catch (error) {
     console.log(error);
@@ -86,40 +89,40 @@ export const updateProduct = async (product, id) => {
     console.log(error);
   }
 };
-
-export const Login = async (user) => {
-    const User = {
-        email: user.email,
-        password: user.password,
-    };
-    try {
-        const response = await axios.post('/login', User);
-        return response.status;
-    } catch (error) {
-        return error;
-    }
-}
+export const login = async (user) => {
+  const User = {
+    email: user.email,
+    password: user.password,
+  };
+  try {
+    const response = await axios.post("/login", User);
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
 
 export const newUser = async (user) => {
-    const User = {
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        password: user.password,
-    };
-    try {
-        const response = await axios.post('/user', User);
-        console.log(response.status);
-    } catch (error) {
-        console.log(error);
-    }
-}
+  const User = {
+    firstName: user.firstName,
+    lastName: user.lastName,
+    email: user.email,
+    password: user.password,
+  };
+  try {
+    const response = await axios.post("/user", User);
+    console.log(response.data.user);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const deleteUser = async (email) => {
-    try {
-        const response = await axios.delete(`/user/${email}`);
-        console.log(response.status);
-    } catch (error) {
-        console.log(error);
-    }
-}
+  try {
+    const response = await axios.delete(`/users/${email}`);
+    console.log(response.status);
+  } catch (error) {
+    console.log(error);
+  }
+};
