@@ -1,8 +1,15 @@
-describe("GIVEN I am adding numbers", () => {
-  test("THEN I expect 2 + 2 to equal 4", () => {
-    const num1 = 2;
-    const num2 = 2;
-    const result = num1 + num2;
-    expect(result).toBe(4);
+import {
+  getAllProducts,
+  // getOneProductOrDefault,
+  // createProduct,
+  // updateProduct,
+  // deleteProduct,
+} from "../src/services/Controller.js";
+
+describe("GIVEN I am fetching all products from MongoDB", () => {
+  test("THEN I expect to see all products", async () => {
+    const result = await getAllProducts();
+    // console.log(result);
+    expect(result.products[0].category).toBe("men's clothing");
   });
 });
